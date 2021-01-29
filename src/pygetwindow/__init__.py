@@ -331,6 +331,7 @@ if sys.platform == "darwin":
     from ._pygetwindow_macos import *
 
     Window = MacOSWindow
+
 elif sys.platform == "win32":
     from ._pygetwindow_win import (
         Win32Window,
@@ -343,7 +344,16 @@ elif sys.platform == "win32":
     )
 
     Window = Win32Window
+
+elif sys.platform == "linux":
+    from ._pygetwindow_linux import (
+        LinuxWindow,
+        getActiveWindow,
+        getActiveWindowTitle
+    )
+
+    Window = LinuxWindow
 else:
     raise NotImplementedError(
-        "PyGetWindow currently does not support Linux. If you have Xlib knowledge, please contribute! https://github.com/asweigart/pygetwindow"
+        "PyGetWindow currently does not support the current OS. If you have knowledge about the used OS, please contribute! https://github.com/asweigart/pygetwindow"
     )
